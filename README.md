@@ -7,6 +7,12 @@ As instruções e especificações do trabalho estão descritas no arquivo `Espe
 É necessário possuir os seguintes softwares instalados previamente na máquina antes de rodar a aplicação:
 - `node.js` na versão 18.0.0 ou mais recente
 - `npm` na versão 9.0.0 ou mais recente
+- `mysql-server` na versão 8.0.0 ou mais recente
+
+## Criando o banco de dados
+No seu terminal, siga os seguintes passos:
+- Inicie o servidor mysql como root pelo comando `mysql -u root -p`
+- Crie o banco de dados utilizando o comando `source PATH`, substituindo `PATH` pelo caminho absoluto na sua máquina para o arquivo `/src/lib/mysql/createSchema.sql`
 
 ## Iniciando a aplicação
 - Rode o comando `npm run dev` para que o Next.js prepare a aplicação
