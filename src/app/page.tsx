@@ -1,12 +1,72 @@
 import Image from 'next/image'
 
-export default function Home() {
+declare type Estudante = {
+  pk_matricula: string;
+  nome_estudante: string;
+  email: string;
+  senha: string;
+  curso: string;
+  foto_perfil: Buffer | null;
+  status: string;
+}
+
+async function getEstudantes() {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/estudantes`);
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+ 
+  return res.json();
+}
+
+async function getEstudanteByMatricula(pk_matricula: string) {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/estudantes/${pk_matricula}`);
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+ 
+  return res.json();
+}
+
+async function createEstudante(estudante: Estudante) {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/estudantes`, {
+    method: 'POST',
+    body: JSON.stringify({ estudante })
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+ 
+  return res.json();
+}
+
+async function updateEstudante(estudanteAtualizado: Estudante) {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/estudantes`, {
+    method: 'PUT',
+    body: JSON.stringify({ estudanteAtualizado })
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+ 
+  return res.json();
+}
+
+async function deleteEstudante(pk_matricula: string) {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/estudantes`, {
+    method: 'DELETE',
+    body: JSON.stringify({ pk_matricula })
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+ 
+  return res.json();
+}
+
+export default async function Home() {
+  const { estudantes } = await getEstudantes();
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+          {estudantes.map((estudante: Estudante) => `${estudante.nome_estudante} `)}
         </p>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
