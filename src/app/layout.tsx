@@ -1,3 +1,4 @@
+import Navbar from '@/components/navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   description: 'Aplicação fictícia que simula um sistema de avaliações para disciplinas da Universidade de Brasília',
 }
 
+const classes = `${inter.className} bg-emerald-950`;
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={classes}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
