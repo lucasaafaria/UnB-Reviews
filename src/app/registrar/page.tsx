@@ -26,7 +26,8 @@ export type Estudante = {
 async function createEstudante(estudante: Estudante) {
   const res = await fetch(`http://localhost:3000/api/estudantes`, {
     method: 'POST',
-    body: JSON.stringify({ estudante })
+    body: JSON.stringify({ estudante }),
+    cache: 'no-store'
   });
 
   if (!res.ok) throw new Error('Não foi possível criar este usuário');
