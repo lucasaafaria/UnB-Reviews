@@ -15,6 +15,8 @@ export async function POST(request: Request) {
       loginStatus = true;
       const { pk_matricula } = response[0] as Estudante;
       cookies().set('matriculaLogada', pk_matricula);
+    } else {
+      cookies().set('matriculaLogada', '');
     }
 
     return NextResponse.json({ loginStatus, estudante: response });

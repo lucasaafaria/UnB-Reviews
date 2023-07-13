@@ -41,6 +41,7 @@ export default async function PaginaTurma({ params }: { params: { idTurma: strin
       <Navbar />
       <main className="flex flex-col items-center mb-3">
         <h1 className="font-bold text-3xl mt-6 mb-5">{turma.nome_disc}</h1>
+        <span>Período: {turma.periodo}</span>
         <span>Turma {turma.numero}</span>
         <span>Horário das aulas: {turma.horario}</span>
         <span>Vagas ocupadas: {turma.vagas_ocupadas}/{turma.vagas_totais}</span>

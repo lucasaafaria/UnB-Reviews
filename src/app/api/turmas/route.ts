@@ -17,3 +17,29 @@ export async function GET() {
     throw new Error(error.message);
   }
 }
+
+export async function PUT(request: Request) {
+  try {
+    const { turmaAtualizada } = await request.json();
+    const query = 'UPDATE Turmas SET ? WHERE pk_id_turma = ?';
+    const values = [turmaAtualizada, turmaAtualizada.pk_id_turma];
+    const response = await queryHandler({ query, values });
+
+    return NextResponse.json(response);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { idTurma } = await request.json();
+    const query = 'DELETE FROM Turmas WHERE pk_id_turma = ?';
+    const values = [parseInt(idTurma)];
+    const response = await queryHandler({ query, values });
+
+    return NextResponse.json(response);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}

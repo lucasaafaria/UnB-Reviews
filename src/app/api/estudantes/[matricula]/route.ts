@@ -10,7 +10,6 @@ export async function GET(request: Request, { params }: { params: { matricula: s
 
     if (Array.isArray(response) && response.length === 1) {
       const estudante = response[0] as Estudante;
-      estudante.senha = '';
       return NextResponse.json({ estudante });
     }
 
