@@ -31,3 +31,4 @@ API_BASE_URL= http://localhost:3000
 **OBS:** o host e port citados são os padrões do MySQL, mas você deve alterá-los caso possua alguma configuração local diferente. Nos campos `MYSQL_USER` e `MYSQL_PASSWORD`, você deve informar as suas credenciais de root do mysql server.
 - Rode o comando `npm run dev` para que o Next.js prepare a aplicação. Assim que a mensagem `event compiled client and server successfully` aparecer no terminal, significa que está tudo certo. Mantenha este processo rodando enquanto estiver utilizando a aplicação.
 - Em qualquer browser, acesse `https://localhost:3000` e deverá ver a home page da UnB Reviews
+- Um pequeno vídeo de apresentação da aplicação está disponível em: https://youtu.be/7NuMqPGU66E
