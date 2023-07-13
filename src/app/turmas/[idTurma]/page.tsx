@@ -5,6 +5,7 @@ import UpdateReview from '@/components/UpdateReview';
 import ReportReview from '@/components/ReportReview';
 import { Fragment } from 'react';
 import Navbar from '@/components/Navbar';
+import getLoggedUser from '@/lib/cookies/getLoggedUser';
 
 export async function getTurma(idTurma: string): Promise<{ turmas: Turma[] }> {
   const res = await fetch(`http://localhost:3000/api/turmas/${idTurma}`, { cache: 'no-store' });
@@ -25,6 +26,7 @@ async function getAvaliacoesByTurma(idTurma: string): Promise<{ avaliacoes: Aval
 export type Avaliacao = {
   pk_id_avaliacao: number;
   texto_avaliacao: string;
+  fk_matricula_estud?: string;
   nome_estudante: string;
   nota: number;
 }
@@ -35,6 +37,7 @@ export default async function PaginaTurma({ params }: { params: { idTurma: strin
   const turma = turmas[0] || {};
 
   const { avaliacoes } = await getAvaliacoesByTurma(idTurma);
+  const estudante = await getLoggedUser();
   
   return (
     <Fragment>
@@ -61,9 +64,15 @@ export default async function PaginaTurma({ params }: { params: { idTurma: strin
             <h3 className='text-lg font-semibold mb-3'>Nota: {avaliacao.nota}/10</h3>
             <span>{avaliacao.texto_avaliacao}</span>
             <span className='text-sm mt-2'>Autor(a): {avaliacao.nome_estudante}</span>
-            <UpdateReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
-            <DeleteReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
-            <ReportReview />
+            {estudante?.pk_matricula === avaliacao.fk_matricula_estud ? (
+              <UpdateReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
+            ) : null }
+            {estudante?.status === 'admin' ? (
+              <DeleteReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
+            ) : null }
+            {estudante ? (
+              <ReportReview />
+            ) : null}
           </div>
         ))}
 
