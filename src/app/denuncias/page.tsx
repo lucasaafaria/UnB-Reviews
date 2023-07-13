@@ -13,7 +13,7 @@ async function getDenuncias(): Promise<{ denuncias: Denuncia[] }> {
 type Denuncia = {
   pk_id_denuncia: number;
   texto_denuncia: string;
-  nome_autor_avaliacao: string;
+  nome_estudante: string;
   texto_avaliacao: string;
   nota: number;
   nome_disc: string; 
@@ -34,7 +34,7 @@ export default async function PaginaDenuncias() {
             <div className="flex flex-col w-full rounded border border-gray-200 p-2">
               <span>Nota: {denuncia.nota}</span>
               <span>Comentário: {denuncia.texto_avaliacao}</span>
-              <span>Autor(a): {denuncia.nome_autor_avaliacao}</span>
+              <span>Autor(a): {denuncia.nome_estudante}</span>
             </div>
           </div>
         ))}
