@@ -1,7 +1,7 @@
 # UnB-Reviews
 Este repositório tem como objetivo documentar o desenvolvimento do Projeto Final da disciplina de Bancos de Dados da Universidade de Brasília, ministrada pelo professor Pedro Garcia.
 
-As instruções e especificações do trabalho estão descritas no arquivo `Especificações.pdf`
+A pasta `/docs/` contém os diagramas de Modelo Entidade-Relacionamento e Modelo Relacional utilizados como base para modelar o banco de dados do projeto, além do arquivo com as especificações e requerimentos do projeto.
 
 ## Pré-requisitos
 É necessário possuir os seguintes softwares instalados previamente na máquina antes de rodar a aplicação:
