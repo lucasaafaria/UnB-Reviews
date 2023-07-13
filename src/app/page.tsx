@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { Estudante } from "./registrar/page";
+import Navbar from '@/components/Navbar';
+import { Fragment } from 'react';
 
 async function getEstudantes() {
   const res = await fetch(`http://localhost:3000/api/estudantes`, { cache: 'no-store' });
@@ -66,21 +68,20 @@ export default async function Home() {
   const { turmas } = await getTurmas();
   
   return (
-    <main className="flex flex-col items-center mb-3">
-      <h1 className="font-bold text-3xl mt-6">Selecione uma turma para ver as reviews</h1>
-      {turmas.map((turma) => (
-        <div key={turma.pk_id_turma} className="flex flex-col max-w-lg w-full rounded border-2 border-gray-200 p-4 mt-8">
-          <Link className='flex flex-col' href={`/turmas/${turma.pk_id_turma}`}>
-            <h2 className='font-semibold text-xl underline'>{turma.nome_disc}</h2>
-            <span>Turma {turma.numero}</span>
-            <span>Horário das aulas: {turma.horario}</span>
-            <span>Vagas ocupadas: {turma.vagas_ocupadas}/{turma.vagas_totais}</span>
-            <span>Local: {turma.local}</span>
-            <span>Professor(a): {turma.nome_prof}</span>
-            <span>Departamento: {turma.nome_dep}</span>
-          </Link>
-        </div>
-      ))}
-    </main>
+    <Fragment>
+      <Navbar />
+      <main className="flex flex-col items-center mb-3">
+        <h1 className="font-bold text-3xl mt-6">Selecione uma turma para ver as reviews</h1>
+        {turmas.map((turma) => (
+          <div key={turma.pk_id_turma} className="flex flex-col max-w-lg w-full rounded border-2 border-gray-200 p-4 mt-8">
+            <Link className='flex flex-col' href={`/turmas/${turma.pk_id_turma}`}>
+              <h2 className='font-semibold text-xl underline mb-3'>{turma.nome_disc}</h2>
+              <span>Professor(a): {turma.nome_prof}</span>
+              <span>Departamento: {turma.nome_dep}</span>
+            </Link>
+          </div>
+        ))}
+      </main>
+    </Fragment>
   )
 }

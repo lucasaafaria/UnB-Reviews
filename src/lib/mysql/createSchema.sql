@@ -129,6 +129,14 @@ CREATE TABLE IF NOT EXISTS `UnB Reviews`.`Denuncias` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE VIEW IF NOT EXISTS Denuncias_Aprimoradas AS
+SELECT D.*, A.texto_avaliacao, A.nota, E.nome_estudante as nome_autor_avaliacao, DI.nome_disc
+FROM `UnB Reviews`.`Denuncias` AS D
+JOIN `UnB Reviews`.`Avaliacoes` AS A ON D.fk_id_avaliacao = A.pk_id_avaliacao
+JOIN `UnB Reviews`.`Estudantes` AS E ON A.fk_matricula_estud = E.pk_matricula
+JOIN `UnB Reviews`.`Turmas` AS T ON A.fk_id_turma = T.pk_id_turma
+JOIN `UnB Reviews`.`Disciplinas` AS DI ON T.fk_codigo_disc = DI.pk_codigo_disc;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

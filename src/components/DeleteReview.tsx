@@ -26,7 +26,7 @@ const handleClick = async ({ idReview, idTurma }: DeleteReviewProps) => {
 
 const DeleteReview = ({ idReview, idTurma }: DeleteReviewProps  ) => {
   return (
-    <button onClick={() => handleClick({ idReview, idTurma })} className="bg-emerald-500 rounded-full flex items-center justify-center absolute top-3 right-3 p-2">
+    <button onClick={() => handleClick({ idReview, idTurma })} className="bg-emerald-500 rounded-full flex items-center justify-center absolute top-3 right-20 p-2">
       <Image
         src="/trash.png"
         width={12}
