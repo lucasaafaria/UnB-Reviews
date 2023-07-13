@@ -25,7 +25,6 @@ export default async function PaginaAtualizarAvaliacao({ params }: { params: { i
           textoOriginal={avaliacao.texto_avaliacao}
           notaOriginal={avaliacao.nota}
           idTurma={idTurma}
-          idEstudante="170016668"
           idAvaliacao={idAvaliacao}
         />
       </main>

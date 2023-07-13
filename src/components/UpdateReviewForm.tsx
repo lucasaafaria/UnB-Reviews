@@ -7,8 +7,6 @@ import * as Yup from 'yup';
 type Avaliacao = {
   pk_id_avaliacao: number;
   texto_avaliacao: string;
-  fk_id_turma: number;
-  fk_matricula_estud: string;
   nota: number;
 }
 
@@ -21,7 +19,6 @@ type UpdateReviewFormProps = {
   textoOriginal: string;
   notaOriginal: number;
   idTurma: string;
-  idEstudante: string;
   idAvaliacao: string;
 }
 
@@ -42,7 +39,7 @@ const ReviewSchema = Yup.object().shape({
   nota: Yup.string().required('Campo Obrigatório'),
 });
 
-export default function UpdateReviewForm({ textoOriginal, notaOriginal, idTurma, idEstudante, idAvaliacao }: UpdateReviewFormProps) {
+export default function UpdateReviewForm({ textoOriginal, notaOriginal, idTurma, idAvaliacao }: UpdateReviewFormProps) {
   const router = useRouter();
   const fieldClassName = 'mt-1 mb-2 p-2 rounded-l text-gray-800';
   
@@ -57,8 +54,6 @@ export default function UpdateReviewForm({ textoOriginal, notaOriginal, idTurma,
         const avaliacao = {
           pk_id_avaliacao: parseInt(idAvaliacao),
           texto_avaliacao: values.texto,
-          fk_id_turma: parseInt(idTurma),
-          fk_matricula_estud: idEstudante,
           nota: parseInt(values.nota),
         };
         const response = await updateAvaliacao(avaliacao, idTurma);

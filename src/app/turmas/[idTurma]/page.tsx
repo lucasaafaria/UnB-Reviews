@@ -54,9 +54,11 @@ export default async function PaginaTurma({ params }: { params: { idTurma: strin
 
         <div className='flex justify-center relative'>
           <h2 className='font-semibold text-xl mt-10'>Reviews</h2>
-          <Link className='absolute bottom-1 -right-10' href={`/turmas/${idTurma}/avaliacoes`}>
-            <button className='rounded-full bg-emerald-500 w-6 h-6 font-bold text-lg flex items-center justify-center leading-none'>+</button>
-          </Link>
+          {estudante ? (
+            <Link className='absolute bottom-1 -right-10' href={`/turmas/${idTurma}/avaliacoes`}>
+              <button className='rounded-full bg-emerald-500 w-6 h-6 font-bold text-lg flex items-center justify-center leading-none'>+</button>
+            </Link>
+          ) : null }
         </div>
 
         {avaliacoes.map(avaliacao => (
@@ -67,7 +69,7 @@ export default async function PaginaTurma({ params }: { params: { idTurma: strin
             {estudante?.pk_matricula === avaliacao.fk_matricula_estud ? (
               <UpdateReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
             ) : null }
-            {estudante?.status === 'admin' ? (
+            {estudante?.status === 'admin' || estudante?.pk_matricula === avaliacao.fk_matricula_estud ? (
               <DeleteReview idTurma={turma.pk_id_turma} idReview={avaliacao.pk_id_avaliacao} />
             ) : null }
             {estudante ? (
