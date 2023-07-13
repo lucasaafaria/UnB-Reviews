@@ -20,5 +20,14 @@ No seu terminal, siga os seguintes passos:
 
 ## Iniciando a aplicação
 - No diretório raiz deste repositório, execute em seu terminal o comando `npm install`
+- Crie um arquivo chamado `.env.local` na raiz do repositório. Esse arquivo irá armazenar as variáveis de ambiente necessárias para que a aplicação rode. Você deve salvar nele as seguintes informações:
+```
+MYSQL_HOST= 127.0.0.1
+MYSQL_PORT= 3306
+MYSQL_USER= root
+MYSQL_PASSWORD= 123456
+API_BASE_URL= http://localhost:3000
+```
+**OBS:** o host e port citados são os padrões do MySQL, mas você deve alterá-los caso possua alguma configuração local diferente. Nos campos `MYSQL_USER` e `MYSQL_PASSWORD`, você deve informar as suas credenciais de root do mysql server.
 - Rode o comando `npm run dev` para que o Next.js prepare a aplicação. Assim que a mensagem `event compiled client and server successfully` aparecer no terminal, significa que está tudo certo. Mantenha este processo rodando enquanto estiver utilizando a aplicação.
 - Em qualquer browser, acesse `https://localhost:3000` e deverá ver a home page da UnB Reviews
